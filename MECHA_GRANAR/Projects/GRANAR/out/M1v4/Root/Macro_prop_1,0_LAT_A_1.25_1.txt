@@ -1,0 +1,62 @@
+Macroscopic root radial hydraulic properties, apoplastic barrier 1,0 
+
+0 scenarios 
+
+Stack height: 0.02 cm 
+
+Cross-section perimeter: 0.04808361601531968 cm 
+
+Xylem specific axial conductance: 0.004343323564745816 cm^4/hPa/d 
+
+Cross-section radial conductivity: 0.00011805781393574374 cm/hPa/d 
+
+Number of radial discretization boxes: 
+14  3  1  4  3  2  1 
+
+Radial distance from stele centre (microns): 
+0.1557100682126188 
+13.52625027673006 
+17.349784087668347 
+21.0730109699334 
+26.1938952437703 
+26.1938952437703 
+26.1938952437703 
+26.1938952437703 
+33.98789815878298 
+45.25809065931869 
+56.86421338559599 
+67.86438603823068 
+67.86438603823068 
+76.52311732174667 
+
+Standard Transmembrane uptake Fractions (%): 
+[0.] 
+[0.01983408] 
+[0.] 
+[0.] 
+[5.93810278e-09] 
+[0.] 
+[0.] 
+[68.72461435] 
+[25.42614437] 
+[4.39024984] 
+[1.82387125] 
+[0.66105019] 
+[2.4166372] 
+[2.54003241] 
+
+Standard Transmembrane release Fractions (%): 
+[0.] 
+[-0.39777888] 
+[-2.96767801] 
+[-28.85689808] 
+[-67.79747911] 
+[0.] 
+[0.] 
+[0.] 
+[0.] 
+[-1.21468331] 
+[-2.94654785] 
+[-1.15279162] 
+[0.] 
+[-0.66857685] 
