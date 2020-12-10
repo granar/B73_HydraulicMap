@@ -4,7 +4,7 @@
 dir='./MECHA/'
 
 #Project
-Project='Projects/granar/'#BBSRC/'#'Projects/
+Project='Projects/GRANAR/'#BBSRC/'#'Projects/
 
 #Inputs
 Gen='Maize_General.xml'#'Arabido1_General.xml' #'MilletLR3_General.xml' #
