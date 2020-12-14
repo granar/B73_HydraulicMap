@@ -466,7 +466,7 @@ for(j in fls){
   
   fc <- file.copy(paste0("./MECHA_GRANAR/cellsetdata/",j), "./MECHA_GRANAR/cellsetdata/current_root.xml", overwrite = T)
   if(fc){
-  system("C:/Users/heymansad/AppData/Local/Continuum/anaconda3/envs/MECHA/python.exe MECHA_GRANAR/MECHAv4_GRANAR.py")
+  system("C:/Users/heymansad/AppData/Local/Continuum/anaconda3/envs/MECHA/python.exe MECHA_GRANAR/MECHAv4_light.py")
   if(file.exists("./MECHA_GRANAR/Projects/GRANAR/out/M1v4/Root/Project_Test/results/Macro_prop_1,0.txt")){
     file.copy("./MECHA_GRANAR/Projects/GRANAR/out/M1v4/Root/Project_Test/results/Macro_prop_1,0.txt",
               paste0("./MECHA_GRANAR/Projects/GRANAR/out/M1v4/Root/Macro_prop_1,0_",id_root,"_",id_dist,"_",id_rep,".txt"))
@@ -494,16 +494,14 @@ read_mecha_output <- function(path1,path2,path3){
   K1 <- read.delim(path1)
   K2 <- read.delim(path2)
   K3 <- read.delim(path3)
-  axial <- str_split(paste0(K1[4,1]), " ")[[1]]
-  kx <- as.numeric(unlist(regmatches(axial,gregexpr("[-+]?[0-9]*\\.?[0-9]+([eE][-+]?[0-9]+)?",axial))))[1]
-  radial <- str_split(paste0(K1[5,1]), " ")[[1]]
+  radial <- str_split(paste0(K1[4,1]), " ")[[1]]
   kr1 <- as.numeric(unlist(regmatches(radial,gregexpr("[-+]?[0-9]*\\.?[0-9]+([eE][-+]?[0-9]+)?",radial))))[1]
-  radial <- str_split(paste0(K2[5,1]), " ")[[1]]
+  radial <- str_split(paste0(K2[4,1]), " ")[[1]]
   kr2 <- as.numeric(unlist(regmatches(radial,gregexpr("[-+]?[0-9]*\\.?[0-9]+([eE][-+]?[0-9]+)?",radial))))[1]
-  radial <- str_split(paste0(K3[5,1]), " ")[[1]]
+  radial <- str_split(paste0(K3[4,1]), " ")[[1]]
   kr3 <- as.numeric(unlist(regmatches(radial,gregexpr("[-+]?[0-9]*\\.?[0-9]+([eE][-+]?[0-9]+)?",radial))))[1]
   
-  Ktot <- tibble(kx = kx,kr1 = kr1, kr2 = kr2, kr3 = kr3)
+  Ktot <- tibble(kr1 = kr1, kr2 = kr2, kr3 = kr3)
   return(Ktot)
 }
 
@@ -552,9 +550,22 @@ K_xyl_unM <- nodes%>%
   dplyr::summarise(Kx_un = sum(k_xyl_s)*200/1E4)%>%
   ungroup()%>%
   mutate(ID = paste0(name,"_",dist,"_", repet))
+K_xyl_M <- nodes%>%
+  filter(type %in% c("xylem", "metaxylem"))%>%
+  dplyr::group_by(id_cell, repet, name, dist)%>%
+  dplyr::summarise(a = mean(area)*1000^2, ## mm2 to um2
+            k_xyl_s = a^2/(8*pi*200*1E-5/3600/24)*1E-12)%>%
+  ungroup()%>%
+  dplyr::group_by(repet, name, dist)%>%
+  dplyr::summarise(kx = sum(k_xyl_s)*200/1E4)%>%
+  ungroup()%>%
+  mutate(ID = paste0(name,"_",dist,"_", repet))
+
 K$ID = paste0(K$root_name,"_",K$d, "_", K$rep)
 
 Kconduct <- left_join(K, K_xyl_unM, by = "ID")
+Kconduct <- left_join(Kconduct, K_xyl_M, by = "ID")
+
 
 # Load Doussan et al. 1998 Conductivities data file
 conductivities <- read.csv("Doussan_conductivities.csv")

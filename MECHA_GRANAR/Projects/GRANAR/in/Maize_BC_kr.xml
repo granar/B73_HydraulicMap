@@ -5,7 +5,7 @@
 <properties>
     <!-- Path to the folders of different scenarios, note that the listed scenarios are gathered in the same folder -->
     <path_scenarios>
-		<Output path='Project_Test/'/> <!-- hydraulic conductivity of standard walls -->
+		<Output path='Project_Test/results/'/> <!-- hydraulic conductivity of standard walls -->
     </path_scenarios>
 	
 	<!-- Soil water potentials

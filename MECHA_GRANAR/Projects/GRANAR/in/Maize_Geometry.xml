@@ -2,7 +2,7 @@
 
 <param>
         <!-- Plant type -->
-        <Plant value='Root' /> <!--#Maize / Arabido / Millet / Barley /-->
+        <Plant value='M1v4/Root' /> <!--#Maize / Arabido / Millet / Barley /-->
         
         <!-- Image path and properties -->
         <path value='current_root.xml' />
