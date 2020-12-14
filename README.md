@@ -1,3 +1,5 @@
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.4320861.svg)](https://doi.org/10.5281/zenodo.4320861)
+
 # Connecting the dots between root cross-section images and modelling tools to create a high resolution root system hydraulic maps in Zea mays.
  
 ## Protocol to get the hydraulic conductivities along the root axes of maize root.
